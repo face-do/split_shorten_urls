@@ -1,0 +1,28 @@
+<%= form_for(@url, url: (@url.new_record?? urls_path : url_path(@url))) do |f| %>
+<% if @url.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@url.errors.count, "error") %> prohibited this url from being saved:</h2>
+
+  <ul>
+    <% @url.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+<div class="form-horizontal" >
+  <% @links.each_with_index do |link , i| %>
+  <%= f.fields_for :links, link, :child_index => i do |l| %>
+  <%= render :partial => 'fields_new_link', :locals => { :link => link, :l => l, :i => i} %>
+  <% end %>
+  <% end %>
+  <div class="media">
+    <div class="pull-left">
+      <%= link_to_add_fields "リンク先を追加する", f, :links %>
+    </div>
+    <div class="actions pull-right">
+      <%= f.submit "短縮URLを作る", :class => "btn btn-success" %>
+    </div>
+  </div>
+</div>
+<% end %>

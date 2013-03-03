@@ -1,0 +1,14 @@
+
+      <hr>
+      <div class="jumbotron">
+        <h1>URL shortening</h1>
+      </div>
+
+<div class="well">
+<h2 class="top-header">リンク先編集画面</h2>
+<%= render "form" %>
+<div class="media" >
+<%= link_to '戻る', url_path(@url.access_token) , :class => "btn pull-right" %>
+</div>
+
+</div>
